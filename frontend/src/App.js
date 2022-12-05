@@ -8,20 +8,16 @@ import NavBar from '../src/components/NavBar';
 import LoginForm from './components/loginform';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import SDrawer from './components/SDrawer';
+import FormHobby from './components/hobby-form';
+import FormPost from './components/post-form';
 
 function App() {
 
   return (
     <Router>
     <Routes>
-    <Route index element = {<SignUpForm/>}/>
-    <Route path="login" element={<LoginForm/>} />
-    <Route path="signup" element ={<SignUpForm/>}/>
-    <Route path="home" element={[<NavBar/>, <SDrawer/>]} />
-    
-  
-  
-    
+     <Route index element={<FormPost/>}/>
+
     </Routes>
   </Router>
   );

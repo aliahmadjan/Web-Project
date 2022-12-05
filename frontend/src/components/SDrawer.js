@@ -6,10 +6,12 @@ import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import React, { useState } from "react";
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import Face6Icon from '@mui/icons-material/Face6';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AddIcon from '@mui/icons-material/Add';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
+import BookIcon from '@mui/icons-material/Book';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 const drawerWidth = 240;
 const initial_menuItems = [
@@ -28,6 +30,28 @@ const initial_menuItems = [
       path: '/home/viewpost',
       icon: <AllInboxIcon />
     }
+  ]
+},
+{
+
+menuTitle: "Hobbies",
+    visible: false,
+    
+    enteries: [{
+      title: "Add Hobby",
+      path: '/home/addhobby',
+      icon: <BookIcon />
+    },
+    {
+      title: "View Hobby",
+      path: '/home/viewhobby',
+      icon: <VisibilityIcon/>
+    }
+       
+   
+
+
+       
     
 
     ]
