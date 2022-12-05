@@ -1,0 +1,5 @@
+<Route index element = {<SignUpForm/>}/>
+    <Route path="login" element={<LoginForm/>} />
+    <Route path="signup" element ={<SignUpForm/>}/>
+    <Route path="home" element={<NavBar/>} />
+    <Route path="home" element={<SDrawer/>} />
