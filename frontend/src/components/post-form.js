@@ -1,4 +1,4 @@
-import { Avatar, Grid,Paper, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from "@mui/material";
+import { Avatar, Grid,Paper,TextareaAutosize, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from "@mui/material";
 import React, {useState} from "react";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import '../style/loginform.css'
@@ -9,9 +9,20 @@ import { AuthContext } from "../context/AuthContext";
 const FormPost = ()=>
 {
      // const [name, setName] = useState('');
-         const [hobby, setHobby] = useState('');
-         const [description, setDescription] = useState('');
+         const [comment, setComment] = useState('');
+     const[url,setUrl] = useState('');
+            const [image, setImage] =useState('');
          const [msg, setMsg] = useState('');
+
+
+     const [selectedFile, setSelectedFile] = useState();
+	const [isFilePicked, setIsFilePicked] = useState(false);
+
+
+	const changeHandler = (event) => {
+		setSelectedFile(event.target.files[0]);
+		setSelectedFile(true);
+	};
      
           const navigate = useNavigate();
          const handleSubmit = () =>
@@ -20,13 +31,14 @@ const FormPost = ()=>
          }
      
      
-         const AddHobby = async(e) =>
+         const AddPost = async(e) =>
          {
              e.preventDefault();
              try {
-                 await axios.post('http://localhost:5000/hobby/addhobby', {
-                     hobby:hobby,
-                     description: description,
+                 await axios.post('http://localhost:5000/post/addpost', {
+                     comment:comment,
+                     url:url,
+                     image: image,
                  });
                  navigate("/home");
              } catch (error) {
@@ -37,8 +49,8 @@ const FormPost = ()=>
          }
      
      
-         const paperStyle = {padding : 20, height: '40vh', width: 450,
-                             margin: '150px auto'}
+         const paperStyle = {padding : 20, height: '50vh', width: 450,
+                             margin: '180px 10px 200px 240px'}
          const avatarStyle = {backgroundColor: '#4169e1'}
          const btStyle = {margin: '30px 0px 12px'}
          const textStyle = {margin: '3px 0'}
@@ -48,16 +60,21 @@ const FormPost = ()=>
             <Paper elevation={15} style={paperStyle}>
                     <Grid align='center'>
                         <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
-                        <h2>Add Hobby</h2>
-                    </Grid>     
-                    <TextField  onChange={e => setHobby(e.target.value)}
-                    id='hobby' name='hobby' label='Hobby Name'  placeholder="" style={textStyle} fullWidth  variant="standard" required> </TextField> 
-                    <TextField onChange={e => setDescription(e.target.value)}
-                     id='description' name='description' label='Description' placeholder="" style={textStyle} fullWidth required variant="standard"></TextField> 
-                    
-                  
+                        <h2>Add Post</h2>
+                    </Grid>   
+
+                    <TextareaAutosize 
+                        aria-label="minimum height"
+                        minRows={5}
+                        placeholder="Minimum 5 rows"
+                        style={{ width: 400 }}
+                    />  
+                   
+                   <input type="file" name="file" onChange={changeHandler} />
+                   
+                   
                     <form></form>
-                    <Button   type='submit'onClick={AddHobby} variant="contained" style={btStyle} color='primary' fullWidth>ADD HOBBY</Button>   
+                    <Button   type='submit'onClick={AddPost} variant="contained" style={btStyle} color='primary' fullWidth>ADD POST</Button>   
                    
                     
                 </Paper>

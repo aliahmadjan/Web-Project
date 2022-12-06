@@ -24,10 +24,13 @@ connection.once('open', () => {
 
 const SigninRouter = require('./Routes/signup.route');
 const HobbyRouter = require('./Routes/hobby.route');
+const PostRouter = require('./Routes/post.route');
 //const NewAssignmentRouter = require('./routes/uploadassignment-route')
 
 app.use('/signup', SigninRouter);
 app.use('/hobby', HobbyRouter);
+app.use('/post',PostRouter);
+
 //app.use('/assignments', NewAssignmentRouter);
 
 /*
