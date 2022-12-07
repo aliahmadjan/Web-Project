@@ -13,6 +13,7 @@ import FormPost from './components/post-form';
 import ViewHobby from './components/view-hobby';
 import EditHobby from './components/edit-hobby';
 import ViewProfile from './components/view-profile';
+//import SignInSide from './components/create-community';
 
 
 function App() {

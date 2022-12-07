@@ -16,7 +16,7 @@ module.exports = (req,res,next)=>
     }
     const token = authorization.replace("Bearer ","");
     //console.log(token);
-    jwt.verify(token,process.env.SECRET_KEY, (err,payload)=>
+    jwt.verify(token,process.env.SECRET_KEY_USER, (err,payload)=>
     {
         if(err)
         {
