@@ -9,6 +9,7 @@ const ViewProfile = ()=>
 {
     const [name, setName] = useState("");
     const [email ,setEmail] = useState("");
+    const [gender, setGender] = useState("");
     const [phoneno, setPhoneNo]= useState("");
     const [profession, setProfession]= useState("");
     
@@ -23,6 +24,7 @@ const ViewProfile = ()=>
                 console.log(res.data)
                 setName(res.data.name);
                 setEmail(res.data.email);
+                setGender(res.data.gender);
                 setPhoneNo(res.data.phoneno);
                 setProfession(res.data.profession);
         }).catch (err=> {
@@ -48,6 +50,10 @@ const textStyle = {margin: '3px 0'}
                     </Typography>
                     <Typography sx={{ fontWeight: 400 }} variant="h6">
                        Email: {email}
+                    </Typography>
+                    
+                    <Typography sx={{ fontWeight: 400 }} variant="h6">
+                       Gender: {gender}
                     </Typography>
                     <Typography sx={{ fontWeight: 400 }} variant="h6">
                       Phone No: {phoneno}

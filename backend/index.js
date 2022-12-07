@@ -25,18 +25,27 @@ connection.once('open', () => {
 const SigninRouter = require('./Routes/signup.route');
 const HobbyRouter = require('./Routes/hobby.route');
 const PostRouter = require('./Routes/post.route');
-const TokenMiddleware = require ('./Middleware/AuthToken');
+const CommunityRouter = require('./Routes/community.route');
+const TokenMiddlewareUser = require ('./Middleware/UserToken');
+const TokenMiddlewareCommunity = require('./Middleware/CommunityToken');
 //const NewAssignmentRouter = require('./routes/uploadassignment-route')
 
 app.use('/signup', SigninRouter);
 app.use('/hobby', HobbyRouter);
 app.use('/post',PostRouter);
+app.use('/community',CommunityRouter);
 
-app.get('/home/viewprofile',TokenMiddleware,(req,res)=>
+app.get('/home/viewprofile',TokenMiddlewareUser,(req,res)=>
 {
   console.log(req.user);
   res.send(req.user);
  // res.send("TOKEN VERIFIED");
+})
+
+app.get('/home/profile', TokenMiddlewareCommunity, (req,res) =>
+{
+  console.log(req.community);
+  res.send(req.community);
 })
 
 //app.use('/assignments', NewAssignmentRouter);

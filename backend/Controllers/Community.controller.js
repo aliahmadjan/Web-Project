@@ -1,37 +1,36 @@
 const express = require('express');
 const https = require('https');
-const SignUp = require('../Models/SignUp')
+const Community = require('../Models/Community')
 const jwt = require('jsonwebtoken');
 
-const AddUser = (req,res,next) =>  
+const AddCommunity = (req,res,next) =>  
 {
-     const { name ,email,gender,phoneno,profession,password,cpassword} = req.body;
+     const { name ,email,phoneno,interests,password,cpassword} = req.body;
      console.log(name);
-     //if(!name || !email || !gender || !phoneno || !profession || !password || !cpassword)
-     //{
-       // return res.status(422).send("Please Fill ALl the fields");
-     //}
+     if(!name || !email || !phoneno || !interests || !password || !cpassword)
+     {
+        return res.status(422).send("Please Fill All the fields");
+     }
 
-     SignUp.findOne({email:email})
+     Community.findOne({email:email})
      .then(
       async(savedUser) => {
         if(savedUser)
         {
           return res.status(422).send({error: "Invalid Credentials"});
         }
-        const user = new SignUp({
+        const community = new Community({
           name,
           email,
-          gender,
           phoneno,
-          profession,
+          interests,
           password,
           cpassword,
         })
         try{
-          await user.save();
+          await community.save();
           //res.send({message: "User Saved Successfully"})
-          const token = jwt.sign({_id: user.id}, process.env.SECRET_KEY_USER);
+          const token = jwt.sign({_id: community.id}, process.env.SECRET_KEY_COMMUNITY);
         console.log(token);
         res.send({token});
         }
@@ -45,29 +44,13 @@ const AddUser = (req,res,next) =>
     }
     
 
-    //  const user = await SignUp.create({
-    //     name:name,
-    //     email:email,
-    //     gender:gender,
-    //     phoneno:phoneno,
-    //     password:password,
-    //     cpassword:cpassword,
-    //  })
-
-    //  res.status(201).json(user);
-
-  //  }
-  //  catch (err){
-  //   console.log(err);
-   //}
-
 
 const VerifyLogin = async(req,res,next) =>
 {
    try{
     let token;
     const email=req.body.email;
-    const log= await SignUp.findOne({email:email})
+    const log= await Community.findOne({email:email})
    
       if(log)
       {
@@ -81,7 +64,7 @@ const VerifyLogin = async(req,res,next) =>
       }
       else
       {
-        res.status(401).json("Username or Password not found!")
+        res.status(401).json("Email or Password not found!")
       }
    }
    catch (err){
@@ -89,26 +72,26 @@ const VerifyLogin = async(req,res,next) =>
 }   
 }
 
-const GetUser = async(req,res,next) =>
+const GetCommunity = async(req,res,next) =>
 {
-     SignUp.find((error,data) => {
+     Community.find((error,data) => {
         if(error)
         {
-            res.send("Could Not Get Vehicles")
+            res.send("Could Not Get Community")
         }
         else 
          {
             console.log(data)
             res.json(data)
-            console.log("Users Displayed Successfully!")
+            console.log("Community Displayed Successfully!")
          }
     })
 }
 
 
-const GetSingleUser = async(req,res,next) => 
+const GetSingleCommunity = async(req,res,next) => 
 {
-    SignUp.findById(req.params.id , (error,data) =>
+    Community.findById(req.params.id , (error,data) =>
     {
         if(error){
             res.send("Not Found!");
@@ -119,9 +102,9 @@ const GetSingleUser = async(req,res,next) =>
     })
 }
 
-const UpdateUser = async(req,res,next) =>
+const UpdateCommunity = async(req,res,next) =>
 {
-    SignUp.findByIdAndUpdate(req.params.id, {
+    Community.findByIdAndUpdate(req.params.id, {
         $set: req.body
           }, (error, data) => {
             if (error) {
@@ -134,9 +117,9 @@ const UpdateUser = async(req,res,next) =>
           })
     }
     
-    const DeleteUser = async(req,res,next) =>
+    const DeleteCommunity = async(req,res,next) =>
     {
-        SignUp.findByIdAndDelete(req.params.id,(error,data)=> {
+        Community.findByIdAndDelete(req.params.id,(error,data)=> {
             if(error){
                 return next(error);
             }
@@ -151,9 +134,9 @@ const UpdateUser = async(req,res,next) =>
 
     
 
-exports.AddUser=AddUser;
+exports.AddCommunity=AddCommunity;
 exports.VerifyLogin=VerifyLogin;
-exports.GetUser = GetUser;
-exports.GetSingleUser = GetSingleUser;
-exports.UpdateUser = UpdateUser;
-exports.DeleteUser = DeleteUser;
+exports.GetCommunity = GetCommunity;
+exports.GetSingleCommunity = GetSingleCommunity;
+exports.UpdateCommunity = UpdateCommunity;
+exports.DeleteCommunity = DeleteCommunity;
