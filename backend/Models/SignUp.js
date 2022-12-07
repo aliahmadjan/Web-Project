@@ -1,5 +1,7 @@
+const jwt = require('jsonwebtoken');
 const { default: mongoose } = require('mongoose');
 const moongose = require('mongoose');
+require("dotenv").config();
 
 const signupSchema = new moongose.Schema({
 
@@ -29,10 +31,32 @@ const signupSchema = new moongose.Schema({
 
     cpassword :{
         type: String
+    },
+
+    tokens : [
+{
+    token: {
+        type: String
     }
+}
+
+    ]
 
     
 })
+
+    signupSchema.methods.generateAuthToken = async function()
+    {
+        try {
+                let tokenLogin = jwt.sign({_id:this._id}, process.env.SECRET_KEY);
+                this.tokens = this.tokens.concat({token:tokenLogin});
+                await this.save();
+                return tokenLogin;
+        }
+        catch(err) {
+                console.log(err);
+        }
+    }
 
 const SignUp = mongoose.model('SignUp',signupSchema);
 module.exports = SignUp;

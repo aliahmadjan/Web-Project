@@ -6,11 +6,6 @@ const postsSchema = new moongose.Schema({
   comment:{
     type: String
   },
-
-  url: {
-    type: String
-  },
-
   image:{
     type: String
   }

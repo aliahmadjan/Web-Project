@@ -4,15 +4,21 @@ const Post = require('../Models/Posts')
 
 const AddPost = async(req,res,next)=>
 {
-    const newPost = new Post({
-            comment: req.body.comment,
-            url: req.body.url,
-            image: req.body.image,
-      })
+
+    const NewPost= req.body
+    const npost = new Post(NewPost);
+    await npost.save();
+
+    res.json(NewPost);
+    // const newPost = new Post({
+    //         comment: req.body.comment,
+    //         url: req.body.url,
+    //         image: req.body.image,
+    //   })
     
-      newPost.save()
-      .then(() => res.json("New Post Added"))
-      .catch(err => res.status(400).json('Error: '+err))
+    //   newPost.save()
+    //   .then(res => res.json("New Post Added"))
+    //   .catch(err => res.status(400).json('Error: '+err))
 };
 
 const GetPosts = async(req,res,next)=>

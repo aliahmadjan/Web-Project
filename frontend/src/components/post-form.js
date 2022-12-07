@@ -15,7 +15,7 @@ const FormPost = ()=>
          const [msg, setMsg] = useState('');
 
 
-     const [selectedFile, setSelectedFile] = useState();
+     const [selectedFile, setSelectedFile] = useState("");
 	const [isFilePicked, setIsFilePicked] = useState(false);
 
 
@@ -33,20 +33,24 @@ const FormPost = ()=>
      
          const AddPost = async(e) =>
          {
-             e.preventDefault();
-             try {
-                 await axios.post('http://localhost:5000/post/addpost', {
-                     comment:comment,
-                     url:url,
-                     image: image,
-                 });
-                 navigate("/home");
-             } catch (error) {
-                 if (error.response) {
-                     setMsg(error.response.data.msg);
-                 }
-             }
-         }
+             const data = new FormData();
+             data.append("file",selectedFile)
+             data.append("upload_preset","WebProject")
+             data.append("cloud_name","dv3v4zluy")
+         
+            fetch("hhtps://api.cloudinary.com/v1_1/dv3v4zluy/image/upload",
+          {  
+            method:"POST",
+            body:data})
+            .then((res)=> res.json())
+            .then((data)=>
+            {
+                console.log(data)
+            }).catch ((err)=>
+            {
+                console.log(err)
+            })
+            }
      
      
          const paperStyle = {padding : 20, height: '50vh', width: 450,
@@ -73,7 +77,6 @@ const FormPost = ()=>
                    <input type="file" name="file" onChange={changeHandler} />
                    
                    
-                    <form></form>
                     <Button   type='submit'onClick={AddPost} variant="contained" style={btStyle} color='primary' fullWidth>ADD POST</Button>   
                    
                     

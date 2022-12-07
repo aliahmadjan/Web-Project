@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Avatar, Grid,Paper, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import { Avatar, Grid,Paper, TextField, FormControlLabel, Checkbox, Button, Typography, Link, Input } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import '../style/loginform.css'
 import axios from "axios";
@@ -15,7 +15,7 @@ const LoginForm = () => {
     const [msg, setMsg] = useState('');
 
      const navigate = useNavigate();
-    const handleSubmit = () =>
+    const handleSubmit1 = () =>
     {
             navigate("/signup");
     }
@@ -25,10 +25,13 @@ const LoginForm = () => {
     {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/signup/verifylogin', {
+           const res=  await axios.post('http://localhost:5000/signup/verifylogin', {
                 email: email,
                 password: password,
             });
+
+            localStorage.setItem("logintoken",res.data);
+            console.log(res.data);
             navigate("/home");
         } catch (error) {
             if (error.response) {
@@ -48,8 +51,10 @@ const LoginForm = () => {
 
     
     return (
-        <div>
-            <Grid>
+     
+        <Grid>
+           
+            
                 <Paper elevation={10} style={paperStyle}>
                     <Grid align='center'>
                         <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
@@ -68,15 +73,14 @@ const LoginForm = () => {
                         }
                         label = "Remember me"
                     />  
-                    <form></form>
+                    
                     <Button   type='submit'onClick={LoginUser} variant="contained" style={btStyle} color='primary' fullWidth>LOG IN</Button>   
                     <Typography> {"Already Have An Account? "}
-                        <Button onClick={()=> handleSubmit()} type='submit' variant="contained" style={{btStyle, maxWidth:'100px', maxHeight:'40px' }} color='primary'>Sign up</Button>
+                        <Button onClick={()=> handleSubmit1()} type='submit' variant="contained" style={{btStyle, maxWidth:'100px', maxHeight:'40px' }} color='primary'>Sign up</Button>
                     </Typography>
                     
                 </Paper>
             </Grid>
-        </div>
     )
 }
 
