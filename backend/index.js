@@ -25,11 +25,19 @@ connection.once('open', () => {
 const SigninRouter = require('./Routes/signup.route');
 const HobbyRouter = require('./Routes/hobby.route');
 const PostRouter = require('./Routes/post.route');
+const TokenMiddleware = require ('./Middleware/AuthToken');
 //const NewAssignmentRouter = require('./routes/uploadassignment-route')
 
 app.use('/signup', SigninRouter);
 app.use('/hobby', HobbyRouter);
 app.use('/post',PostRouter);
+
+app.get('/home/viewprofile',TokenMiddleware,(req,res)=>
+{
+  console.log(req.user);
+  res.send(req.user);
+ // res.send("TOKEN VERIFIED");
+})
 
 //app.use('/assignments', NewAssignmentRouter);
 

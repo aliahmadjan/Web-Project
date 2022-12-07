@@ -77,9 +77,9 @@ const SignUpForm = () => {
                             <FormLabel component="legend">Gender</FormLabel>
                             <RadioGroup onChange={e => setGender(e.target.value)}
                              id='gender' aria-label="gender" name="gender" style={{ display: 'initial' }} >
-                                <FormControlLabel id='male' value="male" control={<Radio />} label="Male" />
-                                <FormControlLabel id='male' value="female" control={<Radio />} label="Female" />
-                                <FormControlLabel id='other' value="other" control={<Radio />} label="Other" />
+                                <FormControlLabel required id='male' value="male" control={<Radio />} label="Male" />
+                                <FormControlLabel required id='male' value="female" control={<Radio />} label="Female" />
+                                <FormControlLabel required id='other' value="other" control={<Radio />} label="Other" />
                             </RadioGroup>
                         </FormControl>
                         <TextField onChange={e => setPhoneNo(e.target.value)}

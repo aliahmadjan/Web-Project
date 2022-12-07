@@ -1,46 +1,83 @@
 const express = require('express');
 const https = require('https');
 const SignUp = require('../Models/SignUp')
+const jwt = require('jsonwebtoken');
 
-const AddUser = async(req,res,next) =>  
+const AddUser = (req,res,next) =>  
 {
-   try{
-     const { name ,email,gender,phoneno,password,cpassword} = req.body;
-   
-     const oldUser = await SignUp.findOne({email});
+     const { name ,email,gender,phoneno,profession,password,cpassword} = req.body;
+     console.log(name);
+     //if(!name || !email || !gender || !phoneno || !profession || !password || !cpassword)
+     //{
+       // return res.status(422).send("Please Fill ALl the fields");
+     //}
 
-     if(oldUser){
-        return res.status(409).send("User Already Exit");
-     }
+     SignUp.findOne({email:email})
+     .then(
+      async(savedUser) => {
+        if(savedUser)
+        {
+          return res.status(422).send({error: "Invalid Credentials"});
+        }
+        const user = new SignUp({
+          name,
+          email,
+          gender,
+          phoneno,
+          profession,
+          password,
+          cpassword,
+        })
+        try{
+          await user.save();
+          //res.send({message: "User Saved Successfully"})
+          const token = jwt.sign({_id: user.id}, process.env.SECRET_KEY);
+        console.log(token);
+        res.send({token});
+        }
+        catch (err)
+        {
+          return res.status(422).send({error: "Cannot login"});
+        }
+    
+      }   
+     )
+    }
+    
 
-     const user = await SignUp.create({
-        name:name,
-        email:email,
-        gender:gender,
-        phoneno:phoneno,
-        password:password,
-        cpassword:cpassword,
-     })
+    //  const user = await SignUp.create({
+    //     name:name,
+    //     email:email,
+    //     gender:gender,
+    //     phoneno:phoneno,
+    //     password:password,
+    //     cpassword:cpassword,
+    //  })
 
-     res.status(201).json(user);
+    //  res.status(201).json(user);
 
-   }
-   catch (err){
-    console.log(err);
-   }
+  //  }
+  //  catch (err){
+  //   console.log(err);
+   //}
 
-}
 
 const VerifyLogin = async(req,res,next) =>
 {
    try{
+    let token;
     const email=req.body.email;
-    const log= await SignUp.findOne({email:email});
-    console.log(log)
+    const log= await SignUp.findOne({email:email})
+   
       if(log)
       {
-        res.status(201).json(log)
+        // const token = jwt.sign({_id: user.id}, process.env.SECRET_KEY);
+        // console.log(token);
+        // res.send({token});
 
+         token = await  log.generateAuthToken();
+          console.log(token);
+          res.send(token);
       }
       else
       {
@@ -49,7 +86,6 @@ const VerifyLogin = async(req,res,next) =>
    }
    catch (err){
     console.log(err);
-   return res.status(400).send("Invalid Credentials");
 }   
 }
 

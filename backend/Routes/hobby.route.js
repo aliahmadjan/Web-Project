@@ -8,10 +8,12 @@ router.post('/addhobby', HobbyController.AddHobby);
 
 router.get('/gethobbies',HobbyController.GetHobbies);
 
-router.get('/gethobby/:id',HobbyController.GetHobby);
+//router.get('/:hobby',HobbyController.GetHobby);
 
-router.put('/updatehobby/:id',HobbyController.UpdateHobby);
+router.get('/:hobby',HobbyController.GetHobbyName);
 
-router.delete('/deletehobby/:id',HobbyController.DeleteHobby);
+router.patch('/:hobby',HobbyController.UpdateHobby);
+
+router.delete('/:hobby',HobbyController.DeleteHobby);
 
 module.exports = router;
