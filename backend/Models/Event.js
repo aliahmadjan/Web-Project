@@ -20,6 +20,10 @@ const eventSchema = new moongose.Schema({
     interests: {
         type: String
     },
+
+    stars: {
+        type: Number
+    }
  
 })
 
