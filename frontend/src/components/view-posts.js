@@ -12,27 +12,9 @@ const ViewPosts =() =>
   const [ name , setName] = useState("");
   const [ comment, setComment] = useState("");
   const [image ,setImage] = useState("");
-  const [ posts, setPosts] = useState([{}]);
+  const [ posts, setPosts] = useState([]);
   useEffect(()=>
   {
-    let logintoken = localStorage.getItem("logintoken")
-                console.log(logintoken);
-                axios.defaults.headers.common["Authorization"] = `Bearer ${logintoken}`;
-                axios.get("http://localhost:5000/home/viewprofile"
-                      )
-                  .then(res=> {
-                          console.log(res.data);
-                          //console.log(res.data._id);
-
-                          setName(res.data.name);
-                          console.log(res.data.name);
-                          //setUserID(res.data._id);
-                        
-                  })
-                  .catch((err)=>
-                  {
-                    console.log(err);
-                  })
     axios.get("http://localhost:5000/post/getposts")
       .then(res=> {
               console.log(res.data)
@@ -57,7 +39,7 @@ const textStyle = {margin: '3px 0'}
                         (
 <>
                   <Typography sx={{ fontWeight: 400 }} variant="h6">
-                    Name:   {name}   
+                    Name:   {post.name}   
                   </Typography>
                   <Typography sx={{fontWeight:400}} variant="h6">
                     Comment: {post.comment}

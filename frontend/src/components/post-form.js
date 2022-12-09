@@ -1,5 +1,5 @@
 import { Avatar, Grid,Paper,TextareaAutosize, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from "@mui/material";
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import '../style/loginform.css'
 import axios from "axios";
@@ -10,8 +10,9 @@ import { AuthContext } from "../context/AuthContext";
 const FormPost = ()=>
 {       
      
-     const [name, setName] = useState("");
-     const [comment, setComment] = useState("");
+     const [name, setName] = useState();
+     const [userName, setUserName] = useState();
+     const [comment, setComment] = useState();
      const [selectedFile, setSelectedFile] =useState(null);
      const [fileInputState, setFileInputState ] = useState("");
      const [imageValue, setImageValue] = useState(0)
@@ -40,41 +41,67 @@ const previewFile = (file) =>
      
           const navigate = useNavigate();
           const [userID, setUserID] = useState("");
+
+          const getUserProfile = () =>
+          {
+            let logintoken = localStorage.getItem("logintoken")
+            console.log(logintoken);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${logintoken}`;
+            axios.get("http://localhost:5000/home/viewprofile")
+              .then(res=> {
+                      console.log(res.data)
+                     // setUserID(res.data._id);
+                      setName(res.data.name);
+                      //setEmail(res.data.email);
+                      //setGender(res.data.gender);
+                      //setPhoneNo(res.data.phoneno);
+                      //setProfession(res.data.profession);
+              }).catch (err=> {
+                  console.log(err) })
+          }
+
+          useEffect(()=>
+          {
+            getUserProfile();
+          },[]);
+
+
+        //   useEffect(()=>
+        //     {
+        //       axios.get("http://localhost:5000/home/viewprofile")
+        //         .then(res=> {
+        //                 console.log(res.data)
+        //                 setName(res.data)
+        //         }).catch (err=> {
+        //             console.log(err) })
+        //     },[name]);
+
          const AddPost = async(e) =>
          { 
             
             e.preventDefault();
-            try {
-                let logintoken = localStorage.getItem("logintoken")
-                console.log(logintoken);
-                axios.defaults.headers.common["Authorization"] = `Bearer ${logintoken}`;
-                axios.get("http://localhost:5000/home/viewprofile"
-                      )
-                  .then(res=> {
-                          console.log(res.data);
-                          //console.log(res.data._id);
+                // axios.get("http://localhost:5000/home/viewprofile"
+                //       )
+                //   .then(res=> {
+                //           console.log(res.data);
+                //           //console.log(res.data._id);
 
-                          setName(res.data.name);
-                          console.log(res.data.name);
-                          //setUserID(res.data._id);
+                //           setName(res.data.name);
+                //           console.log(res.data.name);
+                //           //setUserID(res.data._id);
                         
-                  })
-                  .catch((err)=>
-                  {
-                    console.log(err);
-                  })
-
-                       
-                   }
-                   catch (error) {
-                    if (error.response) {
-                        setMsg(error.response.data.msg);
-                    }
-                }
+                //   })
+                //  .catch((err)=>
+                 // {
+                   // console.log(err);
+                 // })
+                   
            const url='http://localhost:5000/post/addpost'
            const formData = new FormData()
-           //formData.append('userid',localStorage.getItem("userid"))
-           formData.append('name', name)
+           
+           setUserName(name);
+           //formData.append('userid',l
+           formData.append('name',name)
            formData.append('comment',comment)
            formData.append('image',selectedFile)
            console.log(formData);
@@ -82,10 +109,7 @@ const previewFile = (file) =>
            {
             console.log(res.data)
            })
-           .catch((err)=>
-           {
-            console.log(err)
-           })
+          
          }
 
 
