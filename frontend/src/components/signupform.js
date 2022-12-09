@@ -22,7 +22,7 @@ const SignUpForm = () => {
     const handleSubmit = () =>
     {
        // e.preventDefault();
-       navigate('/login');
+       navigate('/vlogin');
 
     };
 
@@ -40,7 +40,7 @@ const SignUpForm = () => {
                 password: password,
                cpassword:cpassword,
             });
-            navigate("/login");
+            navigate("/vlogin");
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);

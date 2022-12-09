@@ -2,24 +2,25 @@ const express = require('express');
 const https = require('https');
 const Post = require('../Models/Posts')
 
-const AddPost = async(req,res,next)=>
-{
 
-    const NewPost= req.body
-    const npost = new Post(NewPost);
-    await npost.save();
+// const AddPost = async(req,res,next)=>
+// {
+//     upload.single('profileImg');
+//     const NewPost= req.body
+//     const npost = new Post(NewPost);
+//     await npost.save();
 
-    res.json(NewPost);
-    // const newPost = new Post({
-    //         comment: req.body.comment,
-    //         url: req.body.url,
-    //         image: req.body.image,
-    //   })
+//     res.json(NewPost);
+//     // const newPost = new Post({
+//     //         comment: req.body.comment,
+//     //         url: req.body.url,
+//     //         image: req.body.image,
+//     //   })
     
-    //   newPost.save()
-    //   .then(res => res.json("New Post Added"))
-    //   .catch(err => res.status(400).json('Error: '+err))
-};
+//     //   newPost.save()
+//     //   .then(res => res.json("New Post Added"))
+//     //   .catch(err => res.status(400).json('Error: '+err))
+// };
 
 const GetPosts = async(req,res,next)=>
 {
@@ -81,7 +82,7 @@ const DeletePost = async(req,res,next)=>
 }
 
 
-exports.AddPost = AddPost;
+//exports.AddPost = AddPost;
 exports.GetPosts = GetPosts;
 exports.GetPost = GetPost;
 exports.UpdatePost = UpdatePost;

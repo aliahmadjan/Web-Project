@@ -14,6 +14,10 @@ import ViewHobby from './components/view-hobby';
 import EditHobby from './components/edit-hobby';
 import ViewProfile from './components/view-profile';
 import SignInCommunity from './components/create-community';
+import CreateEventForm from './components/addevent-form';
+import MainScreen from './components/main-screen';
+import CommunityLogin from './components/community-login';
+import TitlebarBelowImageList from './components/view-posts';
 
 
 function App() {
@@ -21,13 +25,15 @@ function App() {
   return (
     <Router>
     <Routes>
-    <Route index element = {<SignInCommunity/>}/>
-    <Route path="login" element={<LoginForm/>} />
-    <Route path="signup" element ={<SignUpForm/>}/>
+    <Route index element = {<MainScreen/>}/>
+    <Route path="vlogin" element={<LoginForm/>} />
+    <Route path= "vsignup" element={<SignUpForm/>}/>
+    <Route path="csignup" element={<SignInCommunity/>}/>
+    <Route path="clogin" element={<CommunityLogin/>}/> 
     <Route path="home" element={[<NavBar/>, <SDrawer/>]} />
     <Route path="home/viewprofile" element={[<NavBar/> , <SDrawer/>,<ViewProfile/>]} />
     <Route path="home/addpost" element= {[<NavBar/>, <SDrawer/>,<FormPost/>]} />
-    <Route path="home/viewposts" element ={[<NavBar/> ,<SDrawer/>]} />
+    <Route path="home/viewposts" element ={[<NavBar/> ,<SDrawer/>,<TitlebarBelowImageList/>]} />
     <Route path="home/addhobby" element={[<NavBar/>, <SDrawer/>,<FormHobby/>]} />
     <Route path="home/viewhobby" element={[<NavBar/>, <SDrawer/>,<ViewHobby/>]} />
     <Route path="home/edithobby" element={[<NavBar/>,<SDrawer/>,<EditHobby/>]} />

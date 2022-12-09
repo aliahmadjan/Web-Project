@@ -7,6 +7,7 @@ import axios from "axios";
 
 const ViewProfile = ()=>
 {
+    const [ userID , setUserID] = useState("");
     const [name, setName] = useState("");
     const [email ,setEmail] = useState("");
     const [gender, setGender] = useState("");
@@ -22,6 +23,7 @@ const ViewProfile = ()=>
       axios.get("http://localhost:5000/home/viewprofile")
         .then(res=> {
                 console.log(res.data)
+                setUserID(res.data._id);
                 setName(res.data.name);
                 setEmail(res.data.email);
                 setGender(res.data.gender);
@@ -44,6 +46,10 @@ const textStyle = {margin: '3px 0'}
                         <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                         <h2>View Profile</h2>
                     </Grid>  
+                    
+                    <Typography sx={{ fontWeight: 400 }} variant="h6">
+                      ID: {userID}      
+                    </Typography>
                
                     <Typography sx={{ fontWeight: 400 }} variant="h6">
                       Name: {name}      

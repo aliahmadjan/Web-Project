@@ -8,37 +8,37 @@ import { useNavigate} from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 
-const LoginForm = () => {
+const CommunityLogin = () => {
     // const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [msg, setMsg] = useState('');
+//     const [email, setEmail] = useState('');
+//     const [password, setPassword] = useState('');
+//     const [msg, setMsg] = useState('');
 
      const navigate = useNavigate();
     const handleSubmit1 = () =>
     {
-            navigate("/vsignup");
+            navigate("/csignup");
     }
 
 
-    const LoginUser = async(e) =>
-    {
-        e.preventDefault();
-        try {
-           const res=  await axios.post('http://localhost:5000/signup/verifylogin', {
-                email: email,
-                password: password,
-            });
+    // const LoginUser = async(e) =>
+    // {
+    //     e.preventDefault();
+    //     try {
+    //        const res=  await axios.post('http://localhost:5000/signup/verifylogin', {
+    //             email: email,
+    //             password: password,
+    //         });
 
-            localStorage.setItem("logintoken",res.data);
-            console.log(res.data);
-            navigate("/home");
-        } catch (error) {
-            if (error.response) {
-                setMsg(error.response.data.msg);
-            }
-        }
-    }
+    //         localStorage.setItem("logintoken",res.data);
+    //         console.log(res.data);
+    //         navigate("/home");
+    //     } catch (error) {
+    //         if (error.response) {
+    //             setMsg(error.response.data.msg);
+    //         }
+    //     }
+    // }
 
 
     const paperStyle = {padding : 20, height: '50vh', width: 450,
@@ -60,9 +60,9 @@ const LoginForm = () => {
                         <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                         <h2>Sign in</h2>
                     </Grid>     
-                    <TextField  onChange={e => setEmail(e.target.value)}
+                    <TextField  
                     id='email' name='email' label='Email'  placeholder="you@example.com" style={textStyle} fullWidth  variant="standard" required> </TextField> 
-                    <TextField onChange={e => setPassword(e.target.value)}
+                    <TextField 
                      id='password' name='password' label='Password' placeholder="Enter 6 characters or more" type='password' style={textStyle} fullWidth required variant="standard"></TextField> 
                     <FormControlLabel color='secondary'
                         control={
@@ -74,8 +74,8 @@ const LoginForm = () => {
                         label = "Remember me"
                     />  
                     
-                    <Button   type='submit'onClick={LoginUser} variant="contained" style={btStyle} color='primary' fullWidth>LOG IN</Button>   
-                    <Typography> {"Already Have An Account? "}
+                    <Button   type='submit' variant="contained" style={btStyle} color='primary' fullWidth>LOG IN</Button>   
+                    <Typography> {"Create An Account? "}
                         <Button onClick={()=> handleSubmit1()} type='submit' variant="contained" style={{btStyle, maxWidth:'100px', maxHeight:'40px' }} color='primary'>Sign up</Button>
                     </Typography>
                     
@@ -84,4 +84,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+export default CommunityLogin;
