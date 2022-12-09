@@ -12,7 +12,9 @@ router.get('/gethobbies',HobbyController.GetHobbies);
 
 router.get('/:hobby',HobbyController.GetHobbyName);
 
-router.patch('/:hobby',HobbyController.UpdateHobby);
+
+
+router.patch('/updatehobby',HobbyController.UpdateHobby);
 
 router.delete('/:hobby',HobbyController.DeleteHobby);
 
