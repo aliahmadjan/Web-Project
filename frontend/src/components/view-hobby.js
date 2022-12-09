@@ -60,7 +60,7 @@ const ViewHobby = ()=>
             navigate("/home/edithobby");
     }
     //let hobby = useParams().hobby;
-    const [ hobbies, setHobbies] = useState([{}]);
+    const [ hobbies, setHobbies] = useState([]);
     useEffect(()=>
     {
     axios.get("http://localhost:5000/hobby/gethobbies")

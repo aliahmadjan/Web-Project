@@ -64,8 +64,10 @@ router.post('/addpost',  upload.single('image'),async (req,res,next) =>
     else{
         const post = new Post({
             name:req.body.name,
-            image: url + "/public/" +req.file.filename,
+           
             comment: req.body.comment,
+
+            image: url + "/public/" +req.file.filename,
         });
         try{
             await post.save();
