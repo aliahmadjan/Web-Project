@@ -13,7 +13,7 @@ import FormPost from './components/post-form';
 import ViewHobby from './components/view-hobby';
 import EditHobby from './components/edit-hobby';
 import ViewProfile from './components/view-profile';
-//import SignInSide from './components/create-community';
+import SignInCommunity from './components/create-community';
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   return (
     <Router>
     <Routes>
-    <Route index element = {<SignUpForm/>}/>
+    <Route index element = {<SignInCommunity/>}/>
     <Route path="login" element={<LoginForm/>} />
     <Route path="signup" element ={<SignUpForm/>}/>
     <Route path="home" element={[<NavBar/>, <SDrawer/>]} />

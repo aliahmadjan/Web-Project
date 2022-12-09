@@ -46,8 +46,6 @@ const SignUpForm = () => {
                 setMsg(error.response.data.msg);
             }
         }
-    
-
     }
 
 
