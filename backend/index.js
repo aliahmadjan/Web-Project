@@ -32,6 +32,7 @@ const TokenMiddlewareCommunity = require('./Middleware/CommunityToken');
 
 app.use('/signup', SigninRouter);
 app.use('/hobby', HobbyRouter);
+app.use('/public' ,express.static('public'));
 app.use('/post',PostRouter);
 app.use('/community',CommunityRouter);
 

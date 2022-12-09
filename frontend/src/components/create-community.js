@@ -40,6 +40,8 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+
+
 export default function SignIn() {
   
     const [name, setName] = useState('');
@@ -52,12 +54,10 @@ export default function SignIn() {
     const [msg,setMsg]=useState('');
         const navigate = useNavigate();
 
-        const handleSubmit = () =>
-        {
-           // e.preventDefault();
-           navigate('/login');
-    
-        };
+        const ToCommunityLogin = () =>
+{
+  navigate("/clogin");
+}    
   
   const SignupCommunity = async(e) =>
   {
@@ -200,7 +200,7 @@ export default function SignIn() {
              
               <Grid container>
               <Typography> {"Already Have An Account? "}
-                        <Button type='submit' variant="contained" onClick={()=>handleSubmit()} style={{btStyle, maxWidth:'60px', maxHeight:'40px' }} color='primary'>Login</Button>
+                        <Button type='submit' onClick ={ToCommunityLogin} variant="contained" style={{btStyle, maxWidth:'60px', maxHeight:'40px' }} color='primary'>Login</Button>
                     </Typography>
               </Grid>
             </Box>

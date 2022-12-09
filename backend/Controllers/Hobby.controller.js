@@ -86,8 +86,7 @@ const UpdateHobby = async(req,res,next)=>
         console.log("Hobby"+ temp_hobby)
     
         const update = {
-            hobby: req.body.hobby,
-            description: req.body.description
+            hobby: req.body.hobby
         };
 
         Hobby.findOneAndUpdate({hobby1},update)

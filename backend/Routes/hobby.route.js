@@ -14,7 +14,7 @@ router.get('/:hobby',HobbyController.GetHobbyName);
 
 
 
-router.patch('/updatehobby',HobbyController.UpdateHobby);
+router.put('/updatehobby/hobby/description',HobbyController.UpdateHobby);
 
 router.delete('/:hobby',HobbyController.DeleteHobby);
 
