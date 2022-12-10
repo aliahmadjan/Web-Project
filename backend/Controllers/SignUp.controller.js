@@ -2,6 +2,8 @@ const express = require('express');
 const https = require('https');
 const SignUp = require('../Models/SignUp')
 const jwt = require('jsonwebtoken');
+const { Sign } = require('crypto');
+const requireLogin = require('../Middleware/UserToken.js')
 const router = express.Router()
 
 const AddUser = (req,res,next) =>  
@@ -104,52 +106,6 @@ const GetUser = async(req,res,next) =>
     })
 }
 
-const FollowUser = async(req,res)=>
-{
-  SignUp.findByIdAndUpdate(req.body.followId,{
-      $push:{followers:req.SignUp._id}
-  },
-  {
-      new:true
-  },(err,result)=>{
-      if(err){
-          return res.status(422).json({error:err})
-      }
-      SignUp.findByIdAndUpdate(req.SignUp._id,{
-        $push:{following:req.body.followId}
-        
-    },{new:true}).select("-password").then(result=>{
-        res.json(result)
-    }).catch(err=>{
-        return res.status(422).json({error:err})
-    })
-
-  }
-  )
-}
-
-const UnfollowUser = (req,res)=>
-{
-  SignUp.findByIdAndUpdate(req.body.unfollowId,{
-      $pull:{followers:req.SignUp._id} //logged in user id
-  },{
-      new:true
-  },(err,result)=>{
-      if(err){
-          return res.status(422).json({error:err})
-      }
-      SignUp.findByIdAndUpdate(req.SignUp._id,{
-        $pull:{following:req.body.unfollowId}
-        
-    },{new:true}).select("-password").then(result=>{
-        res.json(result)
-    }).catch(err=>{
-        return res.status(422).json({error:err})
-    })
-
-  }
-  )
-}
 
 const GetSingleUser = async(req,res,next) => 
 {
@@ -202,5 +158,3 @@ exports.GetUser = GetUser;
 exports.GetSingleUser = GetSingleUser;
 exports.UpdateUser = UpdateUser;
 exports.DeleteUser = DeleteUser;
-exports.FollowUser = FollowUser;
-exports.UnfollowUser = UnfollowUser;

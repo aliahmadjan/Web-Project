@@ -1,12 +1,12 @@
 import './App.css';
-import React, { useState } from "react";
+import React, { useState,useEffect,createContext,useReducer,useContext } from "react";
 
 // eslint-disable-next-line
 // eslint-disable-next-line
 import SignUpForm from './components/signupform';
 import NavBar from '../src/components/NavBar';
 import LoginForm from './components/loginform';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route,useHistory} from 'react-router-dom';
 import SDrawer from './components/SDrawer';
 import FormHobby from './components/hobby-form';
 import FormPost from './components/post-form';
@@ -19,15 +19,16 @@ import MainScreen from './components/main-screen';
 import CommunityLogin from './components/community-login';
 import TitlebarBelowImageList from './components/view-posts';
 import ViewVeteran from './components/view-veteran';
-
+export const UserContext = createContext()
 
 function App() {
-  
- 
   return (
     <Router>
     <Routes>
-    <Route index element={[<NavBar/>, <SDrawer/>]} />
+    <Route index element = {<MainScreen/>}/>
+    <Route path="vsignup" element={<SignUpForm/>} />
+    <Route path="vlogin" element={<LoginForm/>} />
+    <Route path="home" element={[<NavBar/>, <SDrawer/>]} />
     <Route path="home/viewprofile" element={[<NavBar/> , <SDrawer/>,<ViewProfile/>]} />
     <Route path="home/addpost" element= {[<NavBar/>, <SDrawer/>,<FormPost/>]} />
     <Route path="home/viewposts" element ={[<NavBar/> ,<SDrawer/>,<TitlebarBelowImageList/>]} />

@@ -5,6 +5,7 @@ import '../style/loginform.css'
 import axios from "axios";
 import {useParams} from 'react-router-dom'
 import {getAllHobbies} from '../services/user-services'
+import {UserContext} from '../App'
 
 
 import { renderMatches, useNavigate} from "react-router-dom";
@@ -27,11 +28,12 @@ const ViewVeteran = ()=>
 
     const [userProfile,setProfile] = useState(null)
     
-    const {state,dispatch} = useParams();
+    //const {state,dispatch} = useParams();
+    const {state,dispatch} = useContext(UserContext)
     const {userid} = useParams()
     const [showfollow,setShowFollow] = useState(state?!state.following.includes(userid):true)
     useEffect(()=>{
-       fetch(`/user/${userid}`,{
+       fetch(`/SignUp/${userid}`,{
            headers:{
                "Authorization":"Bearer "+localStorage.getItem("jwt")
            }
@@ -136,7 +138,7 @@ const textStyle = {margin: '3px 0'}
                     className="btn waves-effect waves-light #64b5f6 blue darken-1"
                     onClick={()=>unfollowUser()}
                     >
-                        UnFollow
+                        Unfollow
                     </button>
                     }
                     </>
