@@ -60,7 +60,26 @@ menuTitle: "Hobbies",
     
 
     ]
-  }
+  },
+  {
+
+    menuTitle: "Veterans",
+        visible: false,
+        
+        enteries: [{
+          title: "View Veteran",
+          path: '/home/viewveteran',
+          icon: <BookIcon />
+        }
+           
+       
+    
+    
+           
+        
+    
+        ]
+      }
 
 
 

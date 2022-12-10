@@ -18,4 +18,8 @@ router.put('/updateuser/:id',SignUpController.UpdateUser)
 
 router.delete('/deleteuser/:id',SignUpController.DeleteUser)
 
+router.put('/follow',SignUpController.FollowUser)
+
+router.put('/unfollow',SignUpController.UnfollowUser)
+
 module.exports = router;
