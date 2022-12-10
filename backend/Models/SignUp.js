@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { default: mongoose } = require('mongoose');
 const moongose = require('mongoose');
+const {ObjectId} = mongoose.Schema.Types
 require("dotenv").config();
 
 const signupSchema = new moongose.Schema({
@@ -33,11 +34,12 @@ const signupSchema = new moongose.Schema({
         type: String
     },
 
-    interested :
-    {
-        type: Boolean,
-        default: false
-    },
+    followers:[
+        {type:ObjectId,ref:"SignUp"}
+    ],
+    following:[
+        {type:ObjectId,ref:"SignUp"}
+    ],
 
     tokens : [
 {
