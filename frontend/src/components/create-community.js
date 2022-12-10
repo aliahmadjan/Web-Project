@@ -18,7 +18,6 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { useNavigate} from "react-router-dom";
 import axios from "axios";
 import background from "./community-img.jpg";
-import { MuiPicker } from "./MuiPicker";
 
 function Copyright(props) {
   return (
@@ -44,11 +43,11 @@ const theme = createTheme();
 
 export default function SignIn() {
   
-    const [name, setName] = useState('');
+    const [orgname, setOrgName] = useState('');
     const [email,setEmail]=useState('');
     
     const [phoneno,setPhoneNo] = useState('');
-    const [interests,setInterests] = useState('');
+    //const [interests,setInterests] = useState('');
     const [password,setPassword ]= useState('');
     const [ cpassword,setConfPassword]= useState('');
     const [msg,setMsg]=useState('');
@@ -65,14 +64,13 @@ export default function SignIn() {
       e.preventDefault();
       try {
           await axios.post('http://localhost:5000/community/addcommunity', {
-              name:name,
+              orgname:orgname,
               email: email,
               phoneno:phoneno,
-              interests:interests,
               password: password,
              cpassword:cpassword,
           });
-          navigate("/home");
+          navigate("/clogin");
       } catch (error) {
           if (error.response) {
               setMsg(error.response.data.msg);
@@ -128,10 +126,10 @@ export default function SignIn() {
                 margin="normal"
                 required
                 fullWidth
-                name="name"
+                name="orgname"
                 label="Community Name"
                 id="name"
-                onChange={e => setName(e.target.value)}
+                onChange={e => setOrgName(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -154,15 +152,6 @@ export default function SignIn() {
                 autoComplete="phoneno"
                 autoFocus
                 onChange={e => setPhoneNo(e.target.value)}
-              />
-                <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="interests"
-                label="Interests/Tags"
-                id="interests"
-                onChange={e => setInterests(e.target.value)}
               />
               <TextField
                 margin="normal"

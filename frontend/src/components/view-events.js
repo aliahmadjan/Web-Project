@@ -1,4 +1,4 @@
-import { Avatar, Grid,Paper,TextareaAutosize, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from "@mui/material";
+import { Avatar, Grid,Paper,TextareaAutosize, TextField, FormControlLabel, Checkbox, Button, Typography, Link, Rating } from "@mui/material";
 import React, {useEffect, useState} from "react";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from "axios";
@@ -9,18 +9,20 @@ const ViewPosts =() =>
 {
 
   const [ name , setName] = useState("");
-  const [ comment, setComment] = useState("");
-  const [image ,setImage] = useState("");
-  const [ posts, setPosts] = useState([]);
+  const [ venue, setVenue] = useState("");
+  const [ interests ,setInterests] = useState("");
+  const [date , setDate] = useState("");
+  const [stars,setStars] = useState("");
+  const [ events, setEvents] = useState([]);
   useEffect(()=>
   {
-    axios.get("http://localhost:5000/post/getposts")
+    axios.get("http://localhost:5000/event/getevent")
       .then(res=> {
               console.log(res.data)
-              setPosts(res.data)
+              setEvents(res.data)
       }).catch (err=> {
           console.log(err) })
-  },[posts]);
+  },[events]);
 
   const paperStyle = {padding : 20, height: '50vh', width: 450,
   margin: '180px 10px 200px 240px'}
@@ -34,20 +36,28 @@ const textStyle = {margin: '3px 0'}
                       <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                       <h2>View Posts</h2>
                   </Grid>  
-                  {[...posts].reverse().map((post)=>
+                  {[...events].reverse().map((event)=>
                         (
 <>
                   <Typography sx={{ fontWeight: 400 }} variant="h6">
-                    Name:   {post.name}   
+                    Event Name:   {event.name}   
                   </Typography>
                   <Typography sx={{fontWeight:400}} variant="h6">
-                    Comment: {post.comment}
+                    Venue: {event.venue}
                   </Typography>
+                  <Typography sx={{fontWeight:400}} variant="h6">
+                    Category : {event.interests}
+                  </Typography>
+                  <Typography sx={{fontWeight:400}} variant="h6">
+                    Date: {event.date}
+                  </Typography>
+                  <Rating
+                  name ="read-only"
+                  value={event.stars}
+                  readOnly
+                  />
                 
-                    <img
-                        src={post.image}
-                        style={{height:"200px", width: "400px", class:"center", borderRadous:"50%"}}
-                    />
+                            
                  
              
                 

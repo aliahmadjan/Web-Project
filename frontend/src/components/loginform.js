@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Avatar, Grid,Paper, TextField, FormControlLabel, Checkbox, Button, Typography, Link, Input } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import '../style/loginform.css'
 import axios from "axios";
-
+import '../style/loginform.css'
 import { useNavigate} from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+
 
 
 const LoginForm = () => {

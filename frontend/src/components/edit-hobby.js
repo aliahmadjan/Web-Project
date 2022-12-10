@@ -1,13 +1,9 @@
 import { Avatar, Grid,Paper,Card, Box,TextField, FormControlLabel,Snackbar, InputLabel, Checkbox, Button, Typography, Link, Alert } from "@mui/material";
 import React, {useEffect, useState} from "react";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import '../style/loginform.css'
 import axios from "axios";
-import { useForm } from "../hooks/form-hooks";
-import { getHobby, updateHobby } from "../services/user-services";
+
 import { useNavigate, useParams} from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import Input from "../components/Input"
 import AssignmentIcon from "@mui/icons-material/Assessment";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SendIcon from "@mui/icons-material/Send";

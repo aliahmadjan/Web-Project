@@ -5,22 +5,24 @@ require("dotenv").config();
 
 const eventSchema = new moongose.Schema({
 
+   orgname: {
+        type : String
+    },
+
     name: {
         type: String
     },
 
-    date:{
+    venue :{
         type: String
     },
-
-    time: {
-        type: String
-    },
-
     interests: {
         type: String
     },
 
+    date:{
+        type: Date
+    },
     stars: {
         type: Number
     }

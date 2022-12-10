@@ -86,7 +86,7 @@ menuTitle: "Hobbies",
 ]
 
 
-const SDrawer = (props) => {
+const SDrawerV = (props) => {
   const navigate = useNavigate();
   const [menuItems, setMenuItems] = useState(initial_menuItems);
 
@@ -202,4 +202,4 @@ const SDrawer = (props) => {
   );
 };
 
-export default SDrawer;
+export default SDrawerV;
