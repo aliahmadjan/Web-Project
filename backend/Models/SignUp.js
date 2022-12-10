@@ -39,14 +39,6 @@ const signupSchema = new moongose.Schema({
         default: false
     },
 
-    followers: {
-        type : Array
-    },
-
-    following: {
-        type : Array
-    },
-
     tokens : [
 {
     token: {

@@ -65,11 +65,6 @@ menuTitle: "Hobbies",
       path: '/home/viewevents',
       icon: <BookIcon />
     },
-    {
-      title : "Interested Events",
-      path: '/home/intevents',
-      icon:< BookIcon/>
-    }
   ]
   }
 
