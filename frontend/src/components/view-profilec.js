@@ -1,4 +1,4 @@
-import { Avatar, Grid,Paper,TextareaAutosize, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from "@mui/material";
+import { Avatar, Rating,Grid,Paper,TextareaAutosize, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from "@mui/material";
 import React, {useEffect, useState} from "react";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
@@ -8,43 +8,42 @@ import axios from "axios";
 const ViewProfile = ()=>
 {
     const [ userID , setUserID] = useState("");
-    const [name, setName] = useState("");
+    const [orgname, setOrgName] = useState("");
     const [email ,setEmail] = useState("");
-    const [gender, setGender] = useState("");
     const [phoneno, setPhoneNo]= useState("");
     const [profession, setProfession]= useState("");
-    const [ posts, setPosts] = useState([]);
+    const [ events, setEvents] = useState([]);
     const [comment, setComment] = useState();
     const [image , setImage] = useState("");
+    const [ stars, setStars] = useState("");
+   
     
     const getCuurentUser = () =>
     {
-      let logintoken = localStorage.getItem("logintoken")
+      let logintoken = localStorage.getItem("ltoken")
       console.log(logintoken);
       axios.defaults.headers.common["Authorization"] = `Bearer ${logintoken}`;
-      axios.get("http://localhost:5000/home/viewprofile")
+      axios.get("http://localhost:5000/chome/profile")
         .then(res=> {
                 console.log(res.data)
                 setUserID(res.data._id);
-                setName(res.data.name);
+                setOrgName(res.data.orgname);
                 setEmail(res.data.email);
-                setGender(res.data.gender);
                 setPhoneNo(res.data.phoneno);
-                setProfession(res.data.profession);
         }).catch (err=> {
             console.log(err) })
     }
 
-    const getCurrUserPosts=() =>
+    const getCurrUserEvents=() =>
     {
-      axios.get("http://localhost:5000/post/getposts")
+      axios.get("http://localhost:5000/event/getevent")
           .then(res=> {
                   console.log(res.data)
                   //setName(res.data.name);
                   //setComment(res.data.comment);
                   //setImage(res.data.image);
                   //console.log(res.data.comment);
-                  setPosts(res.data)
+                  setEvents(res.data)
           }).catch (err=> {
               console.log(err) })
       }
@@ -53,7 +52,8 @@ const ViewProfile = ()=>
     useEffect(()=>
     {
       getCuurentUser();
-      getCurrUserPosts();
+      getCurrUserEvents();
+     // getCurrUserPosts();
     });
    
 
@@ -77,37 +77,41 @@ const textStyle = {margin: '3px 0'}
                     </Typography>
                
                     <Typography sx={{ fontWeight: 400 }} variant="h6">
-                      Name: {name}      
+                      Organization Name: {orgname}      
                     </Typography>
                     <Typography sx={{ fontWeight: 400 }} variant="h6">
                        Email: {email}
                     </Typography>
                     
-                    <Typography sx={{ fontWeight: 400 }} variant="h6">
-                       Gender: {gender}
-                    </Typography>
+                  
                     <Typography sx={{ fontWeight: 400 }} variant="h6">
                       Phone No: {phoneno}
                     </Typography>
-                    <Typography sx={{ fontWeight: 400 }} variant="h6">
-                       Profession: {profession}
-
-
-                    </Typography>
-
-                    {posts.map((post) => {
-                  if (post.name ==  name ) {
+   
+                    {events.map((event) => {
+                 if (event.orgname ===  orgname ) {
                   return(
                 <>
+                
                 <Typography sx={{ fontWeight: 400 }} variant="h6">
-                    Comment: {post.comment}
+                    Event Name: {event.name}
                 </Typography>
+                <Typography sx={{ fontWeight: 400 }} variant="h6">
+                    Event Venue: {event.venue}
+                </Typography>
+                <Typography sx={{ fontWeight: 400 }} variant="h6">
+                    Category: {event.interests}
+                </Typography>
+                <Typography sx={{ fontWeight: 400 }} variant="h6">
+                    Date: {event.date}
+                </Typography>
+                <Rating
+                  name ="read-only"
+                  value={event.stars}
+                  readOnly
+                  />
 
-                <img
-                    src={post.image}
-                    style={{ height: "200px", width: "400px", class: "center", borderRadous: "50%" }}
-                />
-
+               
 
             </>
                           

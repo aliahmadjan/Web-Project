@@ -3,41 +3,48 @@ import React, { useState } from "react";
 
 // eslint-disable-next-line
 // eslint-disable-next-line
-import SignUpForm from './components/signupform';
-import NavBar from '../src/components/NavBar';
-import LoginForm from './components/loginform';
+//import SignUpForm from './components/signupform';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import SDrawer from './components/SDrawer';
-import FormHobby from './components/hobby-form';
-import FormPost from './components/post-form';
-import ViewHobby from './components/view-hobby';
-import EditHobby from './components/edit-hobby';
-import ViewProfile from './components/view-profile';
-import SignInCommunity from './components/create-community';
-import CreateEventForm from './components/addevent-form';
-import MainScreen from './components/main-screen';
-import CommunityLogin from './components/community-login';
-import TitlebarBelowImageList from './components/view-posts';
+import MainScreen from '../src/components/main-screen';
+import SignUpForm from '../src/components/signupform';
+import LoginForm from '../src/components/loginform';
+import NavBar from '../src/components/NavBar';
+import SDrawerV from '../src/components/SDrawerV';
+import ViewProfile from '../src/components/view-profile';
+import AddPost from '../src/components/post-form';
+import ViewPosts from '../src/components/view-posts';
+import AddHobby from '../src/components/hobby-form';
+import ViewHobby from '../src/components/view-hobby';
+import EditHobby from '../src/components/edit-hobby';
 
-
+import SignInCommunity from '../src/components/create-community';
+import LoginCommunity from '../src/components/community-login';
+import SDrawerC from '../src/components/SDrawerC';
+import ViewProfileComm from './components/view-profilec';
+import AddEvent from './components/add-event';
+import ViewEvents from './components/view-events'
 function App() {
  
   return (
     <Router>
     <Routes>
     <Route index element = {<MainScreen/>}/>
+    <Route path="vsignup" element={<SignUpForm/>} />
     <Route path="vlogin" element={<LoginForm/>} />
-    <Route path= "vsignup" element={<SignUpForm/>}/>
-    <Route path="csignup" element={<SignInCommunity/>}/>
-    <Route path="clogin" element={<CommunityLogin/>}/> 
-    <Route path="home" element={[<NavBar/>, <SDrawer/>]} />
-    <Route path="home/viewprofile" element={[<NavBar/> , <SDrawer/>,<ViewProfile/>]} />
-    <Route path="home/addpost" element= {[<NavBar/>, <SDrawer/>,<FormPost/>]} />
-    <Route path="home/viewposts" element ={[<NavBar/> ,<SDrawer/>,<TitlebarBelowImageList/>]} />
-    <Route path="home/addhobby" element={[<NavBar/>, <SDrawer/>,<FormHobby/>]} />
-    <Route path="home/viewhobby" element={[<NavBar/>, <SDrawer/>,<ViewHobby/>]} />
-    <Route path="home/edithobby" element={[<NavBar/>,<SDrawer/>,<EditHobby/>]} />
+    <Route path="home" element={[<NavBar/>, <SDrawerV/>]} />
+    <Route path="home/viewprofile" element={[<NavBar/> , <SDrawerV/>,<ViewProfile/>]} />
+    <Route path="home/addpost" element= {[<NavBar/>, <SDrawerV/>,<AddPost/>]} />
+    <Route path="home/viewposts" element ={[<NavBar/> ,<SDrawerV/>,<ViewPosts/>]} />
+    <Route path="home/addhobby" element={[<NavBar/>, <SDrawerV/>,<AddHobby/>]} />
+    <Route path="home/viewhobby" element={[<NavBar/>, <SDrawerV/>,<ViewHobby/>]} />
+    <Route path="home/edithobby" element={[<NavBar/>,<SDrawerV/>,<EditHobby/>]} />
 
+    <Route path="csignup" element={<SignInCommunity/>}/>
+    <Route path="clogin" element={<LoginCommunity/>} />
+    <Route path="chome" element={[<NavBar/>, <SDrawerC/>]}/>
+    <Route path="chome/profile" element={[<NavBar/> , <SDrawerC/>,<ViewProfileComm/>]} />
+    <Route path="chome/addevent" element={[<NavBar />, <SDrawerC/> ,<AddEvent/>]} />
+    <Route path="chome/viewevents" element={[<NavBar />, <SDrawerC/> ,<ViewEvents/>]} />
 
     </Routes>
   </Router>

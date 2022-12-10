@@ -7,7 +7,7 @@ const hobbySchema = new moongose.Schema({
     type: String
   },
 
-  description:{
+  category:{
     type: String
   }
 

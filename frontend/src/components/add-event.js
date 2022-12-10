@@ -1,4 +1,4 @@
-import { Avatar, Grid,Paper,Select, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from "@mui/material";
+import { Avatar, Grid,Paper,Select, TextField, FormControlLabel, Checkbox, Button, Typography, Link, Rating } from "@mui/material";
 import React, {useState} from "react";
 import MenuItem from "@material-ui/core/MenuItem";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -8,8 +8,12 @@ import { useNavigate} from "react-router-dom";
 const FormHobby = ()=>
 {
      // const [name, setName] = useState('');
-         const [hobby, setHobby] = useState('');
-         const [category, setCategory] = useState('');
+     const [orgname ,setOrgName] = useState('');
+     const [name,setName] = useState('')
+     const [venue , setVenue] = useState("")
+     const [interests, setInterests] = useState("")
+       const [date, setDate] = useState("")
+     const [stars, setStars] = useState("")
          const [msg, setMsg] = useState('');
      
           const navigate = useNavigate();
@@ -19,15 +23,19 @@ const FormHobby = ()=>
          }
      
      
-         const AddHobby = async(e) =>
+         const AddEvent = async(e) =>
          {
              e.preventDefault();
              try {
-                 await axios.post('http://localhost:5000/hobby/addhobby', {
-                     hobby:hobby,
-                    category: category,
+                 await axios.post('http://localhost:5000/event/addevent', {
+                    orgname: orgname,    
+                    name:name,
+                    venue:venue,
+                    interests:interests,
+                    date:date,
+                    stars:stars,
                  });
-                 navigate("/home");
+                // navigate("/home");
              } catch (error) {
                  if (error.response) {
                      setMsg(error.response.data.msg);
@@ -36,7 +44,7 @@ const FormHobby = ()=>
          }
      
      
-         const paperStyle = {padding : 20, height: '40vh', width: 450,
+         const paperStyle = {padding : 20, height: '70vh', width: 450,
                              margin: '180px 10px 200px 240px'}
          const avatarStyle = {backgroundColor: '#4169e1'}
          const btStyle = {margin: '30px 0px 12px'}
@@ -47,13 +55,35 @@ const FormHobby = ()=>
             <Paper elevation={15} style={paperStyle}>
                     <Grid align='center'>
                         <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
-                        <h2>Add Hobby</h2>
-                    </Grid>     
+                        <h2>Add Event</h2>
+                    </Grid>  
                     <TextField 
-                     onChange={e => setHobby(e.target.value)}
-                    id='hobby' 
-                    name='hobby'
-                    label='Hobby Name' 
+                     onChange={e => setOrgName(e.target.value)}
+                    id='orgname' 
+                    name='orgname'
+                    label='Organization Name' 
+                    placeholder="" 
+                    style={textStyle}
+                    fullWidth 
+                    variant="standard"
+                     required
+                     />   
+                    <TextField 
+                     onChange={e => setName(e.target.value)}
+                    id='name' 
+                    name='name'
+                    label='Event Name' 
+                    placeholder="" 
+                    style={textStyle}
+                    fullWidth 
+                    variant="standard"
+                     required
+                     />
+                     <TextField 
+                     onChange={e => setVenue(e.target.value)}
+                    id='venue' 
+                    name='venue'
+                    label='Venue' 
                     placeholder="" 
                     style={textStyle}
                     fullWidth 
@@ -64,11 +94,11 @@ const FormHobby = ()=>
             <Select
             labelId="select"
             id="select"
-            value={category}
+            value={interests}
             label="Talks"
             fullWidth
             required
-            onChange={e=>setCategory(e.target.value)}
+            onChange={e=>setInterests(e.target.value)}
             >
               <MenuItem value={"Public Talks"}>Public Talks</MenuItem>
               <MenuItem value={"Motivational Talks"}>Motivational Talks</MenuItem>
@@ -81,8 +111,23 @@ const FormHobby = ()=>
               <MenuItem value={"Old Home Visit"}>Old Home Visit</MenuItem>
               <MenuItem value={"Book Reading"}>Book Reading</MenuItem> 
             </Select>   
+            <TextField
+            id="date"
+            label="Date"
+            type="date"
+            onChange = {e=>setDate(e.target.value)}
+            defaultValue="7/05/2015"
+            InputLabelProps ={{
+                shrink:true
+            }}
+            />
 
-                    <Button   type='submit'onClick={AddHobby} variant="contained" style={btStyle} color='primary' fullWidth>ADD HOBBY</Button>   
+            <Rating
+            name="simple-controlled"
+            value={stars}
+            onChange={e=>setStars(e.target.value)}
+            />
+                    <Button   type='submit'onClick={AddEvent} variant="contained" style={btStyle} color='primary' fullWidth>ADD EVENT</Button>   
                    
                     
                 </Paper>

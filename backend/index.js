@@ -25,6 +25,7 @@ connection.once('open', () => {
 const SigninRouter = require('./Routes/signup.route');
 const HobbyRouter = require('./Routes/hobby.route');
 const PostRouter = require('./Routes/post.route');
+const EventRouter = require('./Routes/event.route')
 const CommunityRouter = require('./Routes/community.route');
 const TokenMiddlewareUser = require ('./Middleware/UserToken');
 const TokenMiddlewareCommunity = require('./Middleware/CommunityToken');
@@ -34,6 +35,7 @@ app.use('/signup', SigninRouter);
 app.use('/hobby', HobbyRouter);
 app.use('/public' ,express.static('public'));
 app.use('/post',PostRouter);
+app.use('/event',EventRouter);
 app.use('/community',CommunityRouter);
 
 app.get('/home/viewprofile',TokenMiddlewareUser,(req,res)=>
@@ -43,7 +45,7 @@ app.get('/home/viewprofile',TokenMiddlewareUser,(req,res)=>
  // res.send("TOKEN VERIFIED");
 })
 
-app.get('/home/profile', TokenMiddlewareCommunity, (req,res) =>
+app.get('/chome/profile', TokenMiddlewareCommunity, (req,res) =>
 {
   console.log(req.community);
   res.send(req.community);
