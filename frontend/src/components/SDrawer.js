@@ -13,6 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
 import BookIcon from '@mui/icons-material/Book';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import PageviewIcon from '@mui/icons-material/Pageview';
 const drawerWidth = 240;
 const initial_menuItems = [
   {
@@ -56,6 +57,22 @@ menuTitle: "Hobbies",
 
     ]
   }
+,
+{
+
+menuTitle: "Veterans",
+    visible: false,
+    
+    enteries: [{
+      title: "View Veterans",
+      path: '/home/viewveterans',
+      icon: <PageviewIcon />
+    }
+
+    ]
+  }
+
+
 
 
 

@@ -5,13 +5,9 @@ const SignUp = require('../Models/SignUp')
 const AddUser = async(req,res,next) =>  
 {
    try{
-     const { name ,email,gender,phoneno,password,cpassword} = req.body;
+     const { name ,email,gender,phoneno,password,cpassword,followed} = req.body;
    
-     const oldUser = await SignUp.findOne({email});
-
-     if(oldUser){
-        return res.status(409).send("User Already Exit");
-     }
+     //const oldUser = await SignUp.findOne({email});
 
      const user = await SignUp.create({
         name:name,
@@ -20,6 +16,7 @@ const AddUser = async(req,res,next) =>
         phoneno:phoneno,
         password:password,
         cpassword:cpassword,
+        followed:followed
      })
 
      res.status(201).json(user);
@@ -62,9 +59,7 @@ const GetUser = async(req,res,next) =>
         }
         else 
          {
-            console.log(data)
             res.json(data)
-            console.log("Users Displayed Successfully!")
          }
     })
 }
@@ -113,6 +108,24 @@ const UpdateUser = async(req,res,next) =>
         })
     }
 
+    const ViewVeteranNames = async(req,res,next) => 
+    {
+        let temp = []
+        SignUp.find((error,data) => {
+          if(error)
+          {
+              return next(error)
+          }
+          else 
+          {   
+              for (let i=0;i<Object.keys(data).length;i++){
+                temp.push(data[i]['name'])
+              }
+              res.json(temp)
+          }
+      })
+    }
+
     
 
 exports.AddUser=AddUser;
@@ -121,3 +134,4 @@ exports.GetUser = GetUser;
 exports.GetSingleUser = GetSingleUser;
 exports.UpdateUser = UpdateUser;
 exports.DeleteUser = DeleteUser;
+exports.ViewVeteranNames = ViewVeteranNames;

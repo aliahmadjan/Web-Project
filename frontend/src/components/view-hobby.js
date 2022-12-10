@@ -10,34 +10,28 @@ import { renderMatches, useNavigate, useParams} from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 const ViewHobby = ()=>
 {
-    //let hobby = useParams().hobby;
+         const navigate = useNavigate();
+    const handleSubmit = () =>
+    {
+            navigate("/home/edithobby");
+    }
+    //let hobby = useParams().hobby
     const [ hobbies, setHobbies] = useState([{}]);
     useEffect(()=>
     {
-        getAllHobbies().then((response)=>
-        {
-            console.log(response.data)
-            setHobbies(response.data)
-        })
-
-    //axios.get("http://localhost:5000/hobby/gethobbies")
-      //  .then(res=> {
-        //        console.log(res.data)
-          //      setHobbies(res.data)
-        //}).catch (err=> {
-          //  console.log(err)
-       // })
-    },[]);
-    useEffect(()=>
-    {
-
-    },[hobbies])
-
+    axios.get("http://localhost:5000/hobby/gethobbies")
+        .then(res=> {
+                console.log(res.data)
+                setHobbies(res.data)
+        }).catch (err=> {
+            console.log(err) })
+    },[hobbies]);
+   
     const paperStyle = {padding : 20, height: '50vh', width: 450,
     margin: '180px 10px 200px 240px'}
-const avatarStyle = {backgroundColor: '#4169e1'}
-const btStyle = {margin: '30px 0px 12px'}
-const textStyle = {margin: '3px 0'}
+    const avatarStyle = {backgroundColor: '#4169e1'}
+    const btStyle = {margin: '30px 0px 12px'}
+    const textStyle = {margin: '3px 0'}
     return (
        <Grid>
          <Paper elevation={15} style={paperStyle}>
@@ -45,19 +39,21 @@ const textStyle = {margin: '3px 0'}
                         <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                         <h2>View Hobbies</h2>
                     </Grid>  
+                    
+                    {hobbies.map((hobby)=>
+                        (
+<>
                     <Typography sx={{ fontWeight: 400 }} variant="h6">
-                      Hobby:
-                    </Typography>
-                    <Typography sx={{ fontWeight: 500 }} variant="h5">
-                        {hobbies[0].hobby}
+                      Hobby:  {hobby.hobby}
                     </Typography>
                     <Typography sx={{ fontWeight: 400 }} variant="h6">
-                      Description:
+                      Description: {hobby.description}
                     </Typography>
-                    <Typography sx={{ fontWeight: 500 }} variant="h5">
-                        {hobbies.description}
-                    </Typography>
-
+                          
+                    <Button   type='submit' onClick={()=>handleSubmit()} variant="contained" style={btStyle} color='primary' fullWidth>EDIT HOBBY</Button> 
+                    </>
+                    ))}
+                     
         </Paper>
        </Grid>
     )

@@ -29,8 +29,11 @@ const signupSchema = new moongose.Schema({
 
     cpassword :{
         type: String
-    }
+    },
 
+    followed :{
+        type: String
+    },
     
 })
 

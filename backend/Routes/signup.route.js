@@ -18,4 +18,6 @@ router.put('/updateuser/:id',SignUpController.UpdateUser)
 
 router.delete('/deleteuser/:id',SignUpController.DeleteUser)
 
+router.get('/viewveterannames',SignUpController.ViewVeteranNames)
+
 module.exports = router;
