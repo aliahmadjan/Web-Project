@@ -7,7 +7,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import React, { useState } from "react";
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import Face6Icon from '@mui/icons-material/Face6';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AddIcon from '@mui/icons-material/Add';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
@@ -22,13 +22,18 @@ const initial_menuItems = [
     visible: false,
     icon: <AddIcon/>,
     enteries: [{
+      title: "View Profile",
+      path: '/home/viewprofile',
+      icon: <AccountBoxIcon />
+    },
+      {
       title: "Add Post",
       path: '/home/addpost',
       icon: <PostAddIcon />
     },
     {
       title: "View Posts",
-      path: '/home/viewpost',
+      path: '/home/viewposts',
       icon: <AllInboxIcon />
     }
   ]

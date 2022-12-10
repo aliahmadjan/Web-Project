@@ -40,7 +40,7 @@ import {
 
     const logoutHandler = () =>
     {
-            navigate("/login");
+            navigate("/vlogin");
     }
     const { handleDrawerToggle } = props;
   

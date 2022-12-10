@@ -3,14 +3,13 @@ const moongose = require('mongoose');
 
 const postsSchema = new moongose.Schema({
 
-  comment:{
-    type: String
-  },
 
-  url: {
+  name: {
+     type: String,
+   },
+   comment:{
     type: String
-  },
-
+   },
   image:{
     type: String
   }
