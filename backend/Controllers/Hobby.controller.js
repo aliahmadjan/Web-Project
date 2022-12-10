@@ -51,65 +51,87 @@ const GetHobbies = async(req,res,next)=>
 
 const GetHobby = async(req,res,next)=>
 {
+    
+
+
+
+
+    //    Hobby.findById(req.params.id , (error,data) =>
+//     {
+//         if(error)
+//         {
+//             return next(error);
+//         }
+//         else 
+//         {
+//             res.json(data);
+//         }
+    
   
-            try{
-                const hobby1 = req.params.hobby;
-                Hobby.findOne({hobby:hobby1 }).populate()
-                .then((hobbies) => res.status(201).json(hobbies))
-                .catch((err)=> res.status(400).json(err));
+            // try{
+            //     const hobby1 = req.params.body;
+            //     Hobby.findOne({hobby:hobby1 }).populate()
+            //     .then((hobbies) => res.status(201).json(hobbies))
+            //     .catch((err)=> res.status(400).json(err));
 
-            }
-            catch(err)
-            {
-                return next(err);
-            }
+            // }
+            // catch(err)
+            // {
+            //     return next(err);
+            // }
 
-    // Hobby.findById(req.params.id , (error,data) =>
-    // {
-    //     if(error)
-    //     {
-    //         return next(error);
-    //     }
-    //     else 
-    //     {
-    //         res.json(data);
-    //     }
-    // })
+             var x=req.query.id
+             console.log(x)
+    Hobby.findById(x, (error,data) =>
+    {
+        if(error)
+        {
+            return next(error);
+        }
+        else 
+        {
+            console.log(data)
+            res.json(data);
+        }
+    })
+
 };
-
 const UpdateHobby = async(req,res,next)=>
 {
-    try{
-        const hobby1 = req.params.hobby;
-        console.log(hobby1)
-        var temp_hobby = await Hobby.find({hobby1})
-        console.log("Hobby"+ temp_hobby)
+
+
+    // var x = req.query.id;
+    // try{
+    //     const hobby1 = req.params.hobby;
+    //     console.log(hobby1)
+    //     var temp_hobby = await Hobby.find({hobby1})
+    //     console.log("Hobby"+ temp_hobby)
     
-        const update = {
-            hobby: req.body.hobby
-        };
+    //     const update = {
+    //         hobby: req.body.hobby
+    //     };
 
-        Hobby.findOneAndUpdate({hobby1},update)
-        .then (()=> res.status(201).json("Updated Successfully!"))
-        .catch((err)=> res.status(400).json(err))
-    }
-    catch (err)
-    {
-        return next(err)
-    }
+    //     Hobby.findOneAndUpdate({hobby1},update)
+    //     .then (()=> res.status(201).json("Updated Successfully!"))
+    //     .catch((err)=> res.status(400).json(err))
+    // }
+    // catch (err)
+    // {
+    //     return next(err)
+    // }
 
-
-    // Hobby.findByIdAndUpdate(req.params.id, {
-    //     $set: req.body
-    //       }, (error, data) => {
-    //         if (error) {
-    //           res.send("Error")
-    //           console.log(error)
-    //         } else {
-    //           res.json(data)
-    //           console.log('User updated successfully !')
-    //         }
-    //       })
+       
+    Hobby.findByIdAndUpdate(req.params.id, {
+        $set: req.body
+          }, (error, data) => {
+            if (error) {
+              res.send("Error")
+              console.log(error)
+            } else {
+              res.json(data)
+              console.log('User updated successfully !')
+            }
+          })
 }
 
 const DeleteHobby = async(req,res,next)=>

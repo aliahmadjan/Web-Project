@@ -48,7 +48,16 @@ const signupSchema = new moongose.Schema({
     }
 }
 
-    ]
+    ],
+
+    // hobbies: [
+        
+    //     hobby: {
+    //         type: String
+    //     },
+
+
+    // ]
 
 
     

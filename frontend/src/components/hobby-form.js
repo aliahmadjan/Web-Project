@@ -8,6 +8,7 @@ import { useNavigate} from "react-router-dom";
 const FormHobby = ()=>
 {
      // const [name, setName] = useState('');
+     const [name, setName] = useState('');
          const [hobby, setHobby] = useState('');
          const [category, setCategory] = useState('');
          const [msg, setMsg] = useState('');
@@ -24,7 +25,8 @@ const FormHobby = ()=>
              e.preventDefault();
              try {
                  await axios.post('http://localhost:5000/hobby/addhobby', {
-                     hobby:hobby,
+                 name: name,    
+                 hobby:hobby,
                     category: category,
                  });
                  navigate("/home");
@@ -36,7 +38,7 @@ const FormHobby = ()=>
          }
      
      
-         const paperStyle = {padding : 20, height: '40vh', width: 450,
+         const paperStyle = {padding : 20, height: '60vh', width: 450,
                              margin: '180px 10px 200px 240px'}
          const avatarStyle = {backgroundColor: '#4169e1'}
          const btStyle = {margin: '30px 0px 12px'}
@@ -48,7 +50,18 @@ const FormHobby = ()=>
                     <Grid align='center'>
                         <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                         <h2>Add Hobby</h2>
-                    </Grid>     
+                    </Grid> 
+                    <TextField 
+                     onChange={e => setName(e.target.value)}
+                    id='name' 
+                    name='name'
+                    label='Name' 
+                    placeholder="" 
+                    style={textStyle}
+                    fullWidth 
+                    variant="standard"
+                     required
+                     />    
                     <TextField 
                      onChange={e => setHobby(e.target.value)}
                     id='hobby' 
