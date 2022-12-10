@@ -2,6 +2,9 @@ const express = require('express');
 const https = require('https');
 const SignUp = require('../Models/SignUp')
 const jwt = require('jsonwebtoken');
+const { Sign } = require('crypto');
+const requireLogin = require('../Middleware/UserToken.js')
+const router = express.Router()
 
 const AddUser = (req,res,next) =>  
 {
@@ -98,9 +101,7 @@ const GetUser = async(req,res,next) =>
         }
         else 
          {
-            console.log(data)
             res.json(data)
-            console.log("Users Displayed Successfully!")
          }
     })
 }

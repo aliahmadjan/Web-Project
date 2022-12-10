@@ -18,3 +18,11 @@ let URL="http://localhost:5000/"
     });
   return res;
   }
+
+  export async function GetUser(users)
+  {
+    let tempURL = URL + `signup/${users}`;
+    const res = await axios.get(tempURL);
+  return res;
+  }
+
