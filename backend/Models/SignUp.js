@@ -33,6 +33,20 @@ const signupSchema = new moongose.Schema({
         type: String
     },
 
+    interested :
+    {
+        type: Boolean,
+        default: false
+    },
+
+    followers: {
+        type : Array
+    },
+
+    following: {
+        type : Array
+    },
+
     tokens : [
 {
     token: {
@@ -40,7 +54,16 @@ const signupSchema = new moongose.Schema({
     }
 }
 
-    ]
+    ],
+
+    // hobbies: [
+        
+    //     hobby: {
+    //         type: String
+    //     },
+
+
+    // ]
 
 
     

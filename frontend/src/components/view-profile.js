@@ -95,7 +95,7 @@ const textStyle = {margin: '3px 0'}
 
                     </Typography>
 
-                    {posts.map((post) => {
+                    {[...posts].reverse().map((post) => {
                   if (post.name ==  name ) {
                   return(
                 <>

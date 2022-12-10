@@ -52,14 +52,25 @@ menuTitle: "Hobbies",
       path: '/home/viewhobby',
       icon: <VisibilityIcon/>
     }
-       
-   
-
-
-       
-    
 
     ]
+  },
+    
+  {
+    menuTitle: "Events",
+    visible: false,
+    
+    enteries: [{
+      title: "View Events",
+      path: '/home/viewevents',
+      icon: <BookIcon />
+    },
+    {
+      title : "Interested Events",
+      path: '/home/intevents',
+      icon:< BookIcon/>
+    }
+  ]
   }
 
 

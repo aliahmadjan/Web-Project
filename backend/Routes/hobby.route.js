@@ -8,13 +8,13 @@ router.post('/addhobby', HobbyController.AddHobby);
 
 router.get('/gethobbies',HobbyController.GetHobbies);
 
-//router.get('/:hobby',HobbyController.GetHobby);
+router.get('/gethobby',HobbyController.GetHobby);
 
 router.get('/:hobby',HobbyController.GetHobbyName);
 
 
 
-router.put('/updatehobby/hobby/description',HobbyController.UpdateHobby);
+router.put('/updatehobby/:id',HobbyController.UpdateHobby);
 
 router.delete('/:hobby',HobbyController.DeleteHobby);
 

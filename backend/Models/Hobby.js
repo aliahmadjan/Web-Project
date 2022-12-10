@@ -3,6 +3,9 @@ const moongose = require('mongoose');
 
 const hobbySchema = new moongose.Schema({
 
+  name: {
+    type: String
+  },
   hobby:{
     type: String
   },

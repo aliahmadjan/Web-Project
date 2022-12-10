@@ -1,6 +1,7 @@
 import { Avatar, Grid,Paper,TextareaAutosize, TextField, FormControlLabel, Checkbox, Button, Typography, Link, Rating } from "@mui/material";
 import React, {useEffect, useState} from "react";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import FavouriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import axios from "axios";
 
 
@@ -14,6 +15,7 @@ const ViewPosts =() =>
   const [date , setDate] = useState("");
   const [stars,setStars] = useState("");
   const [ events, setEvents] = useState([]);
+  const [interested , setInteresed] = useState();
   useEffect(()=>
   {
     axios.get("http://localhost:5000/event/getevent")
@@ -59,15 +61,13 @@ const textStyle = {margin: '3px 0'}
                   value={event.stars}
                   readOnly
                   />
-                
-                            
-                 
-             
-                
+                    <FavouriteBorderIcon onClick={e=>setInteresed(true)}>
+
+                    </FavouriteBorderIcon>
                   
                   </>
                     ))}   
-      </Paper>
+                          </Paper>
      </Grid>
   )
 }
