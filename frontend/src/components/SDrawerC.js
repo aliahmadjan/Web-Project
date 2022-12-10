@@ -22,41 +22,27 @@ const initial_menuItems = [
     icon: <AddIcon/>,
     enteries: [{
       title: "View Profile",
-      path: '/home/viewprofile',
+      path: '/chome/profile',
       icon: <AccountBoxIcon />
-    },
-      {
-      title: "Add Post",
-      path: '/home/addpost',
-      icon: <PostAddIcon />
-    },
-    {
-      title: "View Posts",
-      path: '/home/viewposts',
-      icon: <AllInboxIcon />
     }
+      
   ]
 },
 {
 
-menuTitle: "Hobbies",
+menuTitle: "Events",
     visible: false,
     
     enteries: [{
-      title: "Add Hobby",
-      path: '/home/addhobby',
+      title: "Add Event",
+      path: '/chome/addevent',
       icon: <BookIcon />
     },
     {
-      title: "View Hobby",
-      path: '/home/viewhobby',
-      icon: <VisibilityIcon/>
+      title: "View Event",
+      path: '/chome/viewevents',
+      icon: <BookIcon />
     }
-       
-   
-
-
-       
     
 
     ]
@@ -67,7 +53,7 @@ menuTitle: "Hobbies",
 ]
 
 
-const SDrawer = (props) => {
+const SDrawerC = (props) => {
   const navigate = useNavigate();
   const [menuItems, setMenuItems] = useState(initial_menuItems);
 
@@ -183,4 +169,4 @@ const SDrawer = (props) => {
   );
 };
 
-export default SDrawer;
+export default SDrawerC;

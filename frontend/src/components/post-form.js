@@ -1,11 +1,10 @@
 import { Avatar, Grid,Paper,TextareaAutosize, TextField, FormControlLabel, Checkbox, Button, Typography, Link } from "@mui/material";
 import React, {useState,useEffect} from "react";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import '../style/loginform.css'
 import axios from "axios";
 
 import { useNavigate} from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+
 
 const FormPost = ()=>
 {       

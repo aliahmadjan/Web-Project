@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const communitySchema = new moongose.Schema({
 
-    name: {
+    orgname: {
         type: String
     },
 
@@ -15,10 +15,6 @@ const communitySchema = new moongose.Schema({
 
 
     phoneno: {
-        type: String
-    },
-
-    interests: {
         type: String
     },
 

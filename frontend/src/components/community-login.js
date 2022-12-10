@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Avatar, Grid,Paper, TextField, FormControlLabel, Checkbox, Button, Typography, Link, Input } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import '../style/loginform.css'
 import axios from "axios";
 
 import { useNavigate} from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 
 
 const CommunityLogin = () => {
     // const [name, setName] = useState('');
-//     const [email, setEmail] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [msg, setMsg] = useState('');
+     const [email, setEmail] = useState("");
+     const [password, setPassword] = useState("");
+   const [msg, setMsg] = useState('');
 
      const navigate = useNavigate();
     const handleSubmit1 = () =>
@@ -21,24 +19,24 @@ const CommunityLogin = () => {
     }
 
 
-    // const LoginUser = async(e) =>
-    // {
-    //     e.preventDefault();
-    //     try {
-    //        const res=  await axios.post('http://localhost:5000/signup/verifylogin', {
-    //             email: email,
-    //             password: password,
-    //         });
+    const LogInCommunity = async(e) =>
+    {
+        e.preventDefault();
+        try {
+           const res=  await axios.post('http://localhost:5000/community/verifylogin', {
+                email: email,
+                password: password,
+            });
 
-    //         localStorage.setItem("logintoken",res.data);
-    //         console.log(res.data);
-    //         navigate("/home");
-    //     } catch (error) {
-    //         if (error.response) {
-    //             setMsg(error.response.data.msg);
-    //         }
-    //     }
-    // }
+            localStorage.setItem("ltoken",res.data);
+            console.log(res.data);
+            navigate("/chome");
+        } catch (error) {
+            if (error.response) {
+                setMsg(error.response.data.msg);
+            }
+        }
+    }
 
 
     const paperStyle = {padding : 20, height: '50vh', width: 450,
@@ -60,9 +58,9 @@ const CommunityLogin = () => {
                         <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                         <h2>Sign in</h2>
                     </Grid>     
-                    <TextField  
+                    <TextField  onChange={e=>setEmail(e.target.value)}
                     id='email' name='email' label='Email'  placeholder="you@example.com" style={textStyle} fullWidth  variant="standard" required> </TextField> 
-                    <TextField 
+                    <TextField  onChange={e=>setPassword(e.target.value)}
                      id='password' name='password' label='Password' placeholder="Enter 6 characters or more" type='password' style={textStyle} fullWidth required variant="standard"></TextField> 
                     <FormControlLabel color='secondary'
                         control={
@@ -74,7 +72,7 @@ const CommunityLogin = () => {
                         label = "Remember me"
                     />  
                     
-                    <Button   type='submit' variant="contained" style={btStyle} color='primary' fullWidth>LOG IN</Button>   
+                    <Button   type='submit' onClick={LogInCommunity} variant="contained" style={btStyle} color='primary' fullWidth>LOG IN</Button>   
                     <Typography> {"Create An Account? "}
                         <Button onClick={()=> handleSubmit1()} type='submit' variant="contained" style={{btStyle, maxWidth:'100px', maxHeight:'40px' }} color='primary'>Sign up</Button>
                     </Typography>

@@ -10,7 +10,7 @@ router.post('/addevent',EventController.AddEvent)
 
 router.get('/getevent',EventController.GetEvents)
 
-router.get('/getevent/:id',EventController.GetSingleEvent)
+router.get('/getevent/:id',EventController.GetEvent)
 
 router.put('/updateevent/:id',EventController.UpdateEvent)
 

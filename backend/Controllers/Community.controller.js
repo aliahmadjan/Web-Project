@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken');
 
 const AddCommunity = (req,res,next) =>  
 {
-     const { name ,email,phoneno,interests,password,cpassword} = req.body;
-     console.log(name);
-     if(!name || !email || !phoneno || !interests || !password || !cpassword)
+     const { orgname ,email,phoneno,password,cpassword} = req.body;
+    // console.log(name);
+     if(!orgname || !email || !phoneno  || !password || !cpassword)
      {
         return res.status(422).send("Please Fill All the fields");
      }
@@ -20,10 +20,9 @@ const AddCommunity = (req,res,next) =>
           return res.status(422).send({error: "Invalid Credentials"});
         }
         const community = new Community({
-          name,
+          orgname,
           email,
           phoneno,
-          interests,
           password,
           cpassword,
         })
