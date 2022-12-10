@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const AddUser = (req,res,next) =>  
 {
-     const { name ,email,gender,phoneno,profession,password,cpassword} = req.body;
+     const { name ,email,gender,phoneno,profession,password,cpassword,followed} = req.body;
      console.log(name);
      //if(!name || !email || !gender || !phoneno || !profession || !password || !cpassword)
      //{
@@ -27,6 +27,7 @@ const AddUser = (req,res,next) =>
           profession,
           password,
           cpassword,
+          followed
         })
         try{
           await user.save();

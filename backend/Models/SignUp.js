@@ -33,6 +33,10 @@ const signupSchema = new moongose.Schema({
         type: String
     },
 
+    followed :{
+        type: String
+    },
+
     tokens : [
 {
     token: {
