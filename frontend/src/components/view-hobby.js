@@ -29,6 +29,8 @@ const ViewHobby = ()=>
     
     useEffect(()=>
     {
+        
+
     axios.get("http://localhost:5000/hobby/gethobbies")
         .then(res=> {
                 console.log(res.data)

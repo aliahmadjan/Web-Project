@@ -2,7 +2,7 @@ const express = require('express');
 const https = require('https');
 const SignUp = require('../Models/SignUp')
 const jwt = require('jsonwebtoken');
-const { Sign } = require('crypto');
+
 const requireLogin = require('../Middleware/UserToken.js')
 const router = express.Router()
 
@@ -106,6 +106,40 @@ const GetUser = async(req,res,next) =>
     })
 }
 
+// const AddFollow = (req,res,next) =>
+//   {
+
+    
+//     // SignUp.findById(req.body[0]).then(user=>
+//       // {
+//         console.log(req.body[0]);
+//     //     user.followers.push(req.body[1])
+//     //     user.save().then(result=>
+//     //       {
+//     //         res.json(result)
+//     //       }).catch((err)=>
+//     //       {
+//     //         console.log(err)
+//     //       })
+//        //})    
+// }
+
+// const AddFollowing = (req,res,next) =>
+// {
+
+//   console.log(req.body[0]);
+//   // SignUp.findById(req.body[0]).then(user=>
+//   //   {
+//   //     user.following.push(req.body[1])
+//   //     user.save().then(result=>
+//   //       {
+//   //         res.json(result)
+//   //       }).catch((err)=>
+//   //       {
+//   //         console.log(err)
+//   //       })
+//   //   })
+// }
 
 const GetSingleUser = async(req,res,next) => 
 {
@@ -158,3 +192,5 @@ exports.GetUser = GetUser;
 exports.GetSingleUser = GetSingleUser;
 exports.UpdateUser = UpdateUser;
 exports.DeleteUser = DeleteUser;
+//exports.AddFollowing = AddFollowing;
+//exports.AddFollow = AddFollow;

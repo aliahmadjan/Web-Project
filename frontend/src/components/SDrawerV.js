@@ -34,7 +34,7 @@ const initial_menuItems = [
       title: "View Posts",
       path: '/home/viewposts',
       icon: <AllInboxIcon />
-    }
+    },
   ]
 },
 {
@@ -52,18 +52,48 @@ menuTitle: "Hobbies",
       path: '/home/viewhobby',
       icon: <VisibilityIcon/>
     }
-       
-   
-
-
-       
-    
 
     ]
-  }
+  },
+  
+  {
+    menuTitle: "Events",
+    visible: false,
 
+    enteries :[ {
+          title: "View Events",
+          path: '/home/viewevents',
+          icon : <AllInboxIcon />
+  
+      }
+    ]
+  },
+  {
+    menuTitle: "Veterans",
+    visible: false,
 
+    enteries :[ {
+          title: "Follow Veterans",
+          path: '/home/followv',
+          icon : <AllInboxIcon />
+  
+      }
+    ]
+  },
 
+  {
+     menuTitle : "Communities",
+     visible: false,
+     enteries: [
+       {
+        title : "Follow Communities",
+        path: '/home/followc',
+        icon : <AllInboxIcon/>
+       }
+     ]
+  
+    }
+  
 ]
 
 

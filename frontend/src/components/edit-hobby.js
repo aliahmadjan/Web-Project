@@ -40,10 +40,6 @@ const EditHobby = () =>
 // console.log(err) })
 }
 
-useEffect(()=>
-{
-    //getHobbies();
-})
   const EditHobbies = async(e) =>
   {
     axios.get('http://localhost:5000/hobby/gethobby', {params : {id: localStorage.getItem('hobbyid')}})
