@@ -33,13 +33,13 @@ const signupSchema = new moongose.Schema({
     cpassword :{
         type: String
     },
+   followers:{                        // keh ali ke kitny followers hyn
+              type: Array
 
-    followers:[
-        {type:ObjectId,ref:"SignUp"}
-    ],
-    following:[
-        {type:ObjectId,ref:"SignUp"}
-    ],
+    },
+    following:{                     // keh ali kitnon ko follow ker rha
+        type: Array
+    },
 
     tokens : [
 {
@@ -50,17 +50,6 @@ const signupSchema = new moongose.Schema({
 
     ],
 
-    // hobbies: [
-        
-    //     hobby: {
-    //         type: String
-    //     },
-
-
-    // ]
-
-
-    
 })
 
     signupSchema.methods.generateAuthToken = async function()

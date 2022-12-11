@@ -17,6 +17,7 @@ import AddHobby from '../src/components/hobby-form';
 import ViewHobby from '../src/components/view-hobby';
 import EditHobby from '../src/components/edit-hobby';
 import ViewEventsV from '../src/components/view-event-v';
+import FollowV from '../src/components/follow-veterans';
 
 import SignInCommunity from '../src/components/create-community';
 import LoginCommunity from '../src/components/community-login';
@@ -39,7 +40,7 @@ function App() {
     <Route path="home/viewhobby" element={[<NavBar/>, <SDrawerV/>,<ViewHobby/>]} />
     <Route path="home/edithobby" element={[<NavBar/>,<SDrawerV/>,<EditHobby/>]} />
     <Route path="home/viewevents" element={[<NavBar/> ,<SDrawerV/>, <ViewEventsV/>]}/>
-
+     <Route path="home/followv" element={[<NavBar/> ,<SDrawerV/>, <FollowV/>]}/>
 
     <Route path="csignup" element={<SignInCommunity/>}/>
     <Route path="clogin" element={<LoginCommunity/>} />
